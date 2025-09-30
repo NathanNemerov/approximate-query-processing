@@ -7,7 +7,7 @@ This readme is a work in progress and any changes can be made as needed to refle
 
 ## To install required packages: 
 
-With python installed (in this example I am using python3), you should be able to use the command `python3 -m pip install -r requirements.txt`. If you are using VSCode and are in a venv, you can just do `pip install -r requirements.txt`
+With python installed (in this example I am using python3), you should be able to use the command `python3 -m pip install -r requirements.txt`. If you are using VSCode and are in a venv, you can just do `pip install -r requirements.txt` Doing it the first way will install the packages globally on your computer. The second way keeps it narrowed to the environment using it.
 
 ***NOTE: Any packages you add will have to be manually added to the `requirements.txt` file, and you will have to manually invoke it when the file is changed.***
 
