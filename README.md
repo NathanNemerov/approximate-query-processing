@@ -7,14 +7,14 @@ This readme is a work in progress and any changes can be made as needed to refle
 
 ## To install required packages: 
 
-With python installed (in this example I am using python3), you should be able to use the command `python3 -m pip install -r requirements.txt`. If you are using VSCode and are in a venv, you can just do `pip install -r requirements.txt` Doing it the first way will install the packages globally on your computer. The second way keeps it narrowed to the environment using it.
+With python installed (in this example I am using python3), you should be able to use the command `python3 -m pip install -r requirements.txt`. If you are using VSCode and are in a venv, you can just do `pip install -r requirements.txt` Doing it the first way will install the packages globally on your computer. The second way keeps it narrowed to the environment using it. You can follow [this link](https://code.visualstudio.com/docs/python/environments) to see how to create a virtual environment in VSCode.
 
 ***NOTE: Any packages you add will have to be manually added to the `requirements.txt` file, and you will have to manually invoke it when the file is changed.***
 
 
 ## Testing the connection:
 To use the test directory, to test if your python connection is working:
-1. Create a database called university 
+1. [Create a database](https://www.postgresql.org/docs/current/tutorial-createdb.html) called university 
 2. Run DDL.sql to create the relations
 3. Run smallRelationsInsertFile.sql to insert test data
 4. Make a user called `python` and with a password `pythonConnection`, or change the username and password in  `test.py`
