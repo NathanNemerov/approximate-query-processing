@@ -19,3 +19,8 @@ To use the test directory, to test if your python connection is working:
 3. Run smallRelationsInsertFile.sql to insert test data
 4. Make a user called `python` and with a password `pythonConnection`, or change the username and password in  `test.py`
 5. Run the python file `test.py` 
+
+## Running database_operations files:
+(*) Before running any of the files in this folder, run the following commands
+    1. GRANT USAGE ON SCHEMA public TO python
+    2. GRANT CREATE ON SCHEMA public TO python

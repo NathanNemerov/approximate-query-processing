@@ -20,4 +20,3 @@ x_points = np.array(range(0, data_size))
 plt.plot(x_points, random_array)
 plt.show()
 
-
