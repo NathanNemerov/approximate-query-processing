@@ -1,2 +1,9 @@
 matplotlib
+pandas
+psycopg2-binary
+scipy
+numpy
 psycopg
+pandas
+numpy
+scipy
