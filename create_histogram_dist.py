@@ -3,6 +3,7 @@ import psycopg
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats
+import json
 
 with psycopg.connect("dbname=university user=postgres password=403754") as conn:
     df = pd.read_sql("SELECT value FROM skeweddata", conn)
@@ -51,6 +52,45 @@ for dist_name in distributions:
 
 best_fit = max(results, key=lambda x: results[x]['ks_p'])
 print(f"Best fit: {best_fit}, KS p-value: {results[best_fit]['ks_p']}")
+
+# Save results to PostgreSQL table
+with psycopg.connect("dbname=university user=postgres password=403754") as conn:
+    with conn.cursor() as cur:
+        # Create table if it doesn't exist
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS distribution_analysis (
+                id SERIAL PRIMARY KEY,
+                analysis_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                best_distribution VARCHAR(50),
+                ks_p_value FLOAT,
+                ks_statistic FLOAT,
+                distribution_params TEXT,
+                data_size INTEGER
+            )
+        """)
+        
+        # Prepare data for insertion
+        params_str = str(results[best_fit]['params'])
+        all_results_json = {k: {
+            'ks_stat': float(v['ks_stat']), 
+            'ks_p': float(v['ks_p']), 
+            'params': [float(p) for p in v['params']]
+        } for k, v in results.items()}
+        
+        # Insert the analysis results
+        cur.execute("""
+            INSERT INTO distribution_analysis 
+            (best_distribution, ks_p_value, ks_statistic, distribution_params, data_size)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (
+            best_fit,
+            float(results[best_fit]['ks_p']),
+            float(results[best_fit]['ks_stat']),
+            params_str,
+            len(data_clipped)
+        ))
+        
+        conn.commit()
 
 counts, bin_edges = np.histogram(data_clipped, bins=20)
 
