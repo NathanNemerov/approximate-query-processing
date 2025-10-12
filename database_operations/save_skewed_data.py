@@ -28,7 +28,7 @@ for i in range (0, data_size):
 
 #endregion
 
-with psycopg.connect("dbname=university user=python password=pythonConnection") as conn:
+with psycopg.connect("dbname=aqp_database user=postgres password=403754") as conn:
     #Create table and insert data
     with conn.cursor() as cur:
         # Uncomment the line below if you want to regenerate data

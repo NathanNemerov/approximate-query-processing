@@ -14,7 +14,7 @@ With python installed (in this example I am using python3), you should be able t
 
 ## Testing the connection:
 To use the test directory, to test if your python connection is working:
-1. [Create a database](https://www.postgresql.org/docs/current/tutorial-createdb.html) called university 
+1. [Create a database](https://www.postgresql.org/docs/current/tutorial-createdb.html) called aqp_database 
 2. Run DDL.sql to create the relations
 3. Run smallRelationsInsertFile.sql to insert test data
 4. Make a user called `python` and with a password `pythonConnection`, or change the username and password in  `test.py`
