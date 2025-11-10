@@ -19,16 +19,17 @@ for i in range(0, data_size):
 
 #endregion
 
-with psycopg.connect("dbname=university user=python password=pythonConnection") as conn:
+with psycopg.connect("dbname=aqp_database user=python password=pythonConnection") as conn:
     #Create table and insert data
     with conn.cursor() as cur:
         # Uncomment the line below if you want to regenerate data
-        # cur.execute("DROP TABLE bimodaldata")
+        cur.execute("DROP TABLE bimodaldata")
 
         # Create table skeweddata and insert data
         cur.execute("CREATE TABLE bimodaldata (value double precision)")
         
-        for num in random_array:
-            cur.execute('INSERT INTO bimodaldata (value) VALUES (%s)', (num,))
+        for i in range(0, len(random_array) - 1):
+            for j in range(0, int(random_array[i])):
+                cur.execute('INSERT INTO bimodaldata (value) VALUES (%s)', (i,))
 
         conn.commit()
