@@ -3,8 +3,12 @@ import psycopg
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import stats
+from dotenv import load_dotenv
+import os
 
-with psycopg.connect("dbname=aqp_database user=postgres password=403754") as conn:
+load_dotenv()
+
+with psycopg.connect(os.getenv("DATABASE_CONNECTION_STRING")) as conn:
     df = pd.read_sql("SELECT value FROM skeweddata", conn)
 
 data = df["value"].values
@@ -52,7 +56,7 @@ for dist_name in distributions:
 best_fit = max(results, key=lambda x: results[x]['ks_p'])
 print(f"Best fit: {best_fit}, KS p-value: {results[best_fit]['ks_p']}")
 
-with psycopg.connect("dbname=aqp_database user=postgres password=403754") as conn:
+with psycopg.connect(os.getenv("DATABASE_CONNECTION_STRING")) as conn:
     with conn.cursor() as cur:
         # Create table if it doesn't exist
         cur.execute("""

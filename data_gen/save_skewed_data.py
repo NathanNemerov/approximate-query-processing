@@ -3,6 +3,10 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 import psycopg
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 #region Copied data gen code from skewed_generation.py
 
@@ -28,16 +32,17 @@ for i in range (0, data_size):
 
 #endregion
 
-with psycopg.connect("dbname=aqp_database user=postgres password=403754") as conn:
+with psycopg.connect(os.getenv("DATABASE_CONNECTION_STRING")) as conn:
     #Create table and insert data
     with conn.cursor() as cur:
         # Uncomment the line below if you want to regenerate data
-        # cur.execute("DROP TABLE skeweddata")
+        cur.execute("DROP TABLE skeweddata")
 
         # Create table skeweddata and insert data
         cur.execute("CREATE TABLE skeweddata (value double precision)")
         
-        for num in random_array:
-            cur.execute('INSERT INTO skeweddata (value) VALUES (%s)', (num,))
+        for i in range(0, len(random_array) - 1):
+            for j in range(0, int(random_array[i])):
+                cur.execute('INSERT INTO skeweddata (value) VALUES (%s)', (i,))
 
         conn.commit()
