@@ -1,6 +1,10 @@
 #Imports 
 import random
 import psycopg
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 #region Copied data gen code from bimodal_generation.py
 
@@ -19,7 +23,7 @@ for i in range(0, data_size):
 
 #endregion
 
-with psycopg.connect("dbname=aqp_database user=python password=pythonConnection") as conn:
+with psycopg.connect(os.getenv("DATABASE_CONNECTION_STRING")) as conn:
     #Create table and insert data
     with conn.cursor() as cur:
         # Uncomment the line below if you want to regenerate data
