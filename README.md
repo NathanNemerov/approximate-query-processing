@@ -21,7 +21,7 @@ To use the test directory, to test if your python connection is working:
 5. Run the python file `test.py` 
 
 ## Running database_operations files:
-(*) Ensure that the username and password are correct in `.env`. The default is the username `python` and password `pythonConnection`. If you have a username with that password, no updates are needed. This allows you to update the username and password combination in one place and it will apply everywhere. 
-(*) Before running any of the files in this folder, run the following commands
+* Ensure that the username and password are correct in `.env`. The default is the username `python` and password `pythonConnection`. If you have a username with that password, no updates are needed. This allows you to update the username and password combination in one place and it will apply everywhere. 
+* Before running any of the files in this folder, run the following commands
     1. GRANT USAGE ON SCHEMA public TO python
     2. GRANT CREATE ON SCHEMA public TO python
