@@ -9,7 +9,7 @@ load_dotenv()
 
 
 with psycopg.connect(os.getenv("DATABASE_CONNECTION_STRING")) as conn:
-    df = pd.read_sql("SELECT value FROM skeweddata", conn)
+    df = pd.read_sql("SELECT value FROM bimodaldata", conn)
 
 data = df["value"].values
 
