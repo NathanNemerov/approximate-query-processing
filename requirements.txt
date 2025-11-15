@@ -7,3 +7,4 @@ psycopg
 pandas
 numpy
 scipy
+python-dotenv

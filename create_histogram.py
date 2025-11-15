@@ -7,9 +7,10 @@ import os
 
 load_dotenv()
 
+selected_table = input("Enter the name of the table you'd like to visualize: ")
 
 with psycopg.connect(os.getenv("DATABASE_CONNECTION_STRING")) as conn:
-    df = pd.read_sql("SELECT value FROM bimodaldata", conn)
+    df = pd.read_sql(f"SELECT value FROM {selected_table}", conn)
 
 data = df["value"].values
 
